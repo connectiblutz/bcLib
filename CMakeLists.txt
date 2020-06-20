@@ -29,6 +29,7 @@ target_sources(bcl
     src/filewatcher.cc
     src/servicecontrol.cc
   PUBLIC
+    include/bcl/channel.h
     include/bcl/messagethread.h
     include/bcl/messagethreadpool.h
     include/bcl/threadpool.h
