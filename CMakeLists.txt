@@ -78,4 +78,6 @@ target_link_libraries(bcl PUBLIC
 )
 endif()
 
+if (${TESTS})
 add_subdirectory(tests)
+endif()

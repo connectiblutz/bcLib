@@ -1,2 +1,6 @@
 _builds/
 bcBuild-local.conf
+CMakeFiles/
+Makefile
+cmake_install.cmake
+*.a
