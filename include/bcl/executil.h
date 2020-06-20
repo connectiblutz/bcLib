@@ -2,7 +2,7 @@
 
 #include <string>
 
-namespace common {
+namespace bcl {
 
 class ExecUtil {
   public:

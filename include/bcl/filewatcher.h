@@ -4,7 +4,7 @@
 #include <thread>
 #include <functional>
 
-namespace common {
+namespace bcl {
 
 class FileWatcher {
   public:

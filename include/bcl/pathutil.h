@@ -3,7 +3,7 @@
 #include <filesystem>
 
 
-namespace common {
+namespace bcl {
 
 class PathUtil {
   public:

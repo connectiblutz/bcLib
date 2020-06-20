@@ -1,4 +1,4 @@
-#include "common/consolehandler.h"
+#include "bcl/consolehandler.h"
 
 #ifdef _WIN32
 #include <windows.h>
@@ -6,7 +6,7 @@
 #include <signal.h>
 #endif
 
-namespace common {
+namespace bcl {
 
 #ifdef _WIN32
 BOOL WINAPI CtrlHandler(DWORD fdwCtrlType)

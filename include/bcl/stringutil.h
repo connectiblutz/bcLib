@@ -4,7 +4,7 @@
 #include <vector>
 #include <memory>
 
-namespace common {
+namespace bcl {
 
 class StringUtil {
   public:

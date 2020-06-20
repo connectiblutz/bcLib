@@ -3,7 +3,7 @@
 #include <string>
 #include <memory>
 
-namespace common {
+namespace bcl {
 
 class Socket {
   public:

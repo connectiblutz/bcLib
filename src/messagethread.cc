@@ -1,7 +1,7 @@
-#include "common/messagethread.h"
-#include "common/logutil.h"
+#include "bcl/messagethread.h"
+#include "bcl/logutil.h"
 
-namespace common {
+namespace bcl {
 
 const uint16_t MessageThread::MSG_STOP = 0xFFFF;
 

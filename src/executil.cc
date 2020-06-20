@@ -1,14 +1,14 @@
-#include "common/executil.h"
+#include "bcl/executil.h"
 #include <cstdio>
 #include <sstream>
-#include "common/logutil.h"
+#include "bcl/logutil.h"
 
 #ifdef _WIN32
 #define popen _popen
 #define pclose _pclose
 #endif
 
-namespace common {
+namespace bcl {
 
 std::string ExecUtil::Run(std::string command) {
   if (command.empty()) return "";  

@@ -5,9 +5,9 @@
 #include <condition_variable>
 #include <queue>
 #include <chrono>
-#include "common/priorityqueueex.h"
+#include <bcl/priorityqueueex.h>
 
-namespace common {
+namespace bcl {
 
 class MessageThreadPool;
 

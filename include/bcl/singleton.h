@@ -4,7 +4,7 @@
 #include <memory>
 #include <typeindex>
 
-namespace common {
+namespace bcl {
 
 class Singleton {
   public:  

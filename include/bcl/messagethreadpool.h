@@ -1,9 +1,9 @@
 #pragma once
 
-#include "common/messagethread.h"
+#include <bcl/messagethread.h>
 #include <list>
 
-namespace common {
+namespace bcl {
 
 class MessageThreadPool : public MessageThread {
   public:

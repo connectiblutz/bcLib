@@ -1,11 +1,11 @@
-#include "common/windowsservice.h"
-#include "common/logutil.h"
+#include "bcl/windowsservice.h"
+#include "bcl/logutil.h"
 #include <windows.h>
-#include "common/stringutil.h"
+#include "bcl/stringutil.h"
 
 #define UNUSED(x) (void)(x)
 
-namespace common {
+namespace bcl {
 
 SERVICE_STATUS          ssStatus;       // current status of the service
 SERVICE_STATUS_HANDLE   sshStatusHandle;

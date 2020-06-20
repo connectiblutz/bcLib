@@ -1,7 +1,7 @@
-#include "common/threadpool.h"
-#include "common/logutil.h"
+#include "bcl/threadpool.h"
+#include "bcl/logutil.h"
 
-namespace common {
+namespace bcl {
 
 ThreadPool::ThreadPool(uint16_t threads) : running(true), _stopWhenEmpty(false) {
   if (threads==0) {

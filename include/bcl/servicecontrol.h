@@ -7,7 +7,7 @@
 #include <windows.h>
 #endif
 
-namespace common {
+namespace bcl {
 
 class ServiceControl {
   public:

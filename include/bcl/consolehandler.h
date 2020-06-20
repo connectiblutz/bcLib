@@ -1,9 +1,9 @@
 #pragma once
 
-#include "common/messagethread.h"
-#include "common/singleton.h"
+#include <bcl/messagethread.h>
+#include <bcl/singleton.h>
 
-namespace common {
+namespace bcl {
 
 class ConsoleHandler {
   public:

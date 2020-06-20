@@ -1,5 +1,5 @@
-#include "common/filewatcher.h"
-#include "common/logutil.h"
+#include "bcl/filewatcher.h"
+#include "bcl/logutil.h"
 #ifdef _WIN32
 #include <windows.h>
 #include <fileapi.h>
@@ -15,7 +15,7 @@
 #include <unistd.h>
 #endif
 
-namespace common {
+namespace bcl {
 
 FileWatcher::FileWatcher(std::filesystem::path watchedFile, std::function<void()> onChange) : _enabled(true), _watchedFile(watchedFile), _onChange(onChange) {
   _t=std::thread(&FileWatcher::run,this);

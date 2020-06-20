@@ -1,9 +1,9 @@
-#include "common/messagethreadpool.h"
+#include <bcl/messagethreadpool.h>
 #include <memory>
 
 #define UNUSED(x) (void)(x)
 
-class PerfPool : public common::MessageThreadPool {
+class PerfPool : public bcl::MessageThreadPool {
     protected:
         virtual void OnMessage(Message message) {
             UNUSED(message);

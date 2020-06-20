@@ -4,7 +4,7 @@
 #include <vector>
 #include <algorithm>
 
-namespace common {
+namespace bcl {
 
 template<class T,
     class Container = std::vector<T>,

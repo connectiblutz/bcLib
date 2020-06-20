@@ -1,12 +1,12 @@
 #pragma once
 
-#include "common/messagethread.h"
+#include <bcl/messagethread.h>
 
 #include <string>
 #include <memory>
-#include "common/singleton.h"
+#include <bcl/singleton.h>
 
-namespace common {
+namespace bcl {
 
 class WindowsService {
   public:

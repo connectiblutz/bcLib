@@ -1,12 +1,12 @@
 #pragma once
 
 #include <iostream>
-#include "common/singleton.h"
+#include <bcl/singleton.h>
 #include <filesystem>
 #include <memory>
 #include <mutex>
 
-namespace common {
+namespace bcl {
 
 class LogUtil;
 

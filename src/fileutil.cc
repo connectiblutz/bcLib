@@ -1,9 +1,9 @@
-#include "common/fileutil.h"
+#include "bcl/fileutil.h"
 
 #include <fstream>
 #include <sstream>
 
-namespace common {
+namespace bcl {
 
 
 std::string FileUtil::FileToString(std::filesystem::path file) {

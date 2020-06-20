@@ -10,19 +10,19 @@ add_executable(messagethreadpool_perf
   src/messagethreadpool_perf.cc
 )
 target_link_libraries(messagethreadpool_perf
-  common
+  bcLib
 )
 
 add_executable(threadpool_class_perf
   src/threadpool_class_perf.cc
 )
 target_link_libraries(threadpool_class_perf
-  common
+  bcLib
 )
 
 add_executable(threadpool_lambda_perf
   src/threadpool_lambda_perf.cc
 )
 target_link_libraries(threadpool_lambda_perf
-  common
+  bcLib
 )

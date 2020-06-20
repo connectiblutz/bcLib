@@ -1,4 +1,4 @@
-#include "common/pathutil.h"
+#include "bcl/pathutil.h"
 #ifdef _WIN32
 #include <windows.h>
 #include <direct.h>
@@ -6,7 +6,7 @@
 #include <unistd.h>
 #endif
 
-namespace common {
+namespace bcl {
 
 std::filesystem::path PathUtil::binaryExe() {
 #ifdef _WIN32

@@ -1,6 +1,6 @@
-#include "common/socketutil.h"
-#include "common/logutil.h"
-#include "common/stringutil.h"
+#include "bcl/socketutil.h"
+#include "bcl/logutil.h"
+#include "bcl/stringutil.h"
 #ifdef _WIN32
 #include "winsock2.h"
 #include "ws2tcpip.h"
@@ -8,7 +8,7 @@
 #include <arpa/inet.h>
 #endif
 
-namespace common {
+namespace bcl {
 
 #ifdef _WIN32
 #define inet_pton InetPtonA

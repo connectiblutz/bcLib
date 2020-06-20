@@ -1,10 +1,11 @@
-#include "common/threadpool.h"
+#include <bcl/threadpool.h>
 #include <memory>
 
 #define UNUSED(x) (void)(x)
 
-class PerfRunnable : public common::ThreadPool::Runnable {
+class PerfRunnable : public bcl::ThreadPool::Runnable {
     public:
+        virtual ~PerfRunnable() { }
         virtual void run() {  };
 };
 
@@ -12,7 +13,7 @@ int main(int argc, char** argv) {
     UNUSED(argc);
     UNUSED(argv);
     int messages = 1000000;
-    auto pool = std::make_unique<common::ThreadPool>();
+    auto pool = std::make_unique<bcl::ThreadPool>();
     for (int i = 0; i < messages; i++) {
         pool->post(std::make_shared<PerfRunnable>());
     }

@@ -1,4 +1,4 @@
-#include "common/consolesecret.h"
+#include "bcl/consolesecret.h"
 
 #include <iostream>
 #ifdef _WIN32
@@ -8,7 +8,7 @@
 #include <unistd.h>
 #endif
 
-namespace common {
+namespace bcl {
     
 std::string ConsoleSecret::Get(const std::string& prompt) {
     std::string secret;

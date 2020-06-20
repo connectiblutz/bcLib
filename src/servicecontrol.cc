@@ -1,11 +1,11 @@
-#include "common/servicecontrol.h"
-#include "common/logutil.h"
-#include "common/servicecontrol.h"
-#include "common/stringutil.h"
+#include "bcl/servicecontrol.h"
+#include "bcl/logutil.h"
+#include "bcl/servicecontrol.h"
+#include "bcl/stringutil.h"
 
 #define UNUSED(x) (void)(x)
 
-namespace common {
+namespace bcl {
 
 ServiceControl::ServiceControl(const std::string& name) : _name(name) {
 

@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.13)
-project(common VERSION 0.5.0 LANGUAGES CXX)
+project(bcLib VERSION 0.5.0 LANGUAGES CXX)
 
 if (WIN32)
   set(CMAKE_FIND_LIBRARY_SUFFIXES ".lib")
@@ -10,8 +10,8 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Werror -Wall -Wextra")
 
-add_library(common)
-target_sources(common
+add_library(bcLib)
+target_sources(bcLib
   PRIVATE
     src/messagethread.cc
     src/messagethreadpool.cc
@@ -29,50 +29,50 @@ target_sources(common
     src/filewatcher.cc
     src/servicecontrol.cc
   PUBLIC
-    include/common/messagethread.h
-    include/common/messagethreadpool.h
-    include/common/threadpool.h
-    include/common/consolehandler.h
-    include/common/consolesecret.h
-    include/common/fileutil.h
-    include/common/logutil.h
-    include/common/priorityqueueex.h
-    include/common/executil.h
-    include/common/socketutil.h
-    include/common/stringutil.h
-    include/common/singleton.h
-    include/common/pathutil.h
-    include/common/firewallcontrol.h
-    include/common/filewatcher.h
-    include/common/servicecontrol.h
+    include/bcl/messagethread.h
+    include/bcl/messagethreadpool.h
+    include/bcl/threadpool.h
+    include/bcl/consolehandler.h
+    include/bcl/consolesecret.h
+    include/bcl/fileutil.h
+    include/bcl/logutil.h
+    include/bcl/priorityqueueex.h
+    include/bcl/executil.h
+    include/bcl/socketutil.h
+    include/bcl/stringutil.h
+    include/bcl/singleton.h
+    include/bcl/pathutil.h
+    include/bcl/firewallcontrol.h
+    include/bcl/filewatcher.h
+    include/bcl/servicecontrol.h
 )
 
-target_include_directories(common PUBLIC
+target_include_directories(bcLib PUBLIC
   include/
 )
 
 if (WIN32)
-target_sources(common
+target_sources(bcLib
   PRIVATE
     src/windowsservice.cc
   PUBLIC
-    include/common/windowsservice.h
+    include/bcl/windowsservice.h
 )
-target_link_libraries(common PUBLIC
+target_link_libraries(bcLib PUBLIC
   Ws2_32 # socketutil
   ole32 # firewallcontrol
   oleaut32 # firewallcontrol
 )
-set_target_properties(common PROPERTIES COMPILE_DEFINITIONS
+set_target_properties(bcLib PROPERTIES COMPILE_DEFINITIONS
   _SILENCE_CXX17_CODECVT_HEADER_DEPRECATION_WARNING
 )
-target_compile_definitions(common PRIVATE
+target_compile_definitions(bcLib PRIVATE
   UNICODE
 )
 endif()
 
 if(UNIX AND NOT APPLE)
-target_link_libraries(common PUBLIC
+target_link_libraries(bcLib PUBLIC
   pthread # threading
   stdc++fs # filesystem
 )

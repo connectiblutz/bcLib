@@ -1,4 +1,4 @@
-#include "common/stringutil.h"
+#include "bcl/stringutil.h"
 #include <cctype>
 #include <algorithm>
 #include <sstream>
@@ -8,7 +8,7 @@
 #include <wtypes.h>
 #endif
 
-namespace common {
+namespace bcl {
 
 std::string StringUtil::reverse(const std::string& s) {
   return std::string(s.rbegin(),s.rend());

@@ -1,9 +1,9 @@
-#include "common/messagethreadpool.h"
-#include "common/logutil.h"
+#include "bcl/messagethreadpool.h"
+#include "bcl/logutil.h"
 
 #define UNUSED(x) (void)(x)
 
-namespace common {
+namespace bcl {
 
 MessageThreadPool::MessageThreadPool(uint16_t threads) {
   if (threads==0) {

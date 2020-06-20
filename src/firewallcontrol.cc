@@ -1,14 +1,14 @@
-#include "common/firewallcontrol.h"
+#include "bcl/firewallcontrol.h"
 #include <stdio.h>
-#include "common/stringutil.h"
-#include "common/logutil.h"
+#include "bcl/stringutil.h"
+#include "bcl/logutil.h"
 #if !defined(_WIN32) && !defined(__APPLE__)
-#include "common/executil.h"
+#include "bcl/executil.h"
 #endif
 
 #define UNUSED(x) (void)(x)
 
-namespace common {
+namespace bcl {
 
 FirewallControl::FirewallControl(const std::string& name, Direction direction, const std::string& protocol, const std::string& remoteIp, uint16_t remotePort) 
   : _name(name), _direction(direction), _protocol(protocol), _remoteIp(remoteIp), _remotePort(remotePort)
@@ -33,7 +33,7 @@ void FirewallControl::open(Direction direction) {
     hr = CoCreateInstance(__uuidof(NetFwRule), NULL, CLSCTX_INPROC_SERVER, __uuidof(INetFwRule), (void**)&pFwRule);
     if (FAILED(hr))
     {
-      common::LogUtil::Debug()<<"CoCreateInstance for Firewall Rule failed: "<<hr;
+      bcl::LogUtil::Debug()<<"CoCreateInstance for Firewall Rule failed: "<<hr;
     } else {          
       auto spFwRule=std::unique_ptr<INetFwRule,std::function<void(INetFwRule*)>>(pFwRule,[](INetFwRule* p) {
         p->Release();
@@ -71,7 +71,7 @@ void FirewallControl::open(Direction direction) {
       hr = pFwRules->Add(pFwRule);
       if (FAILED(hr))
       {
-        common::LogUtil::Debug()<<"Firewall Rule Add failed: "<<hr;
+        bcl::LogUtil::Debug()<<"Firewall Rule Add failed: "<<hr;
       }
     }
   });
@@ -103,7 +103,7 @@ void FirewallControl::close(Direction direction) {
     auto bstrRuleName = StringUtil::toBSTR("APFD "+_name+nameEnd);
     hr = pFwRules->Remove(bstrRuleName.get());
     if (FAILED(hr)) {
-      common::LogUtil::Debug()<<"Firewall Rule Remove failed: "<<hr;
+      bcl::LogUtil::Debug()<<"Firewall Rule Remove failed: "<<hr;
     }
   });
 #elif defined(__APPLE__)
@@ -124,7 +124,7 @@ void FirewallControl::commonSetup(std::function<void(std::shared_ptr<INetFwRules
   // we'll just use the existing mode.
   if (FAILED(hr) && hr != RPC_E_CHANGED_MODE)
   {
-    common::LogUtil::Debug()<<"CoInitializeEx failed: "<< hr;
+    bcl::LogUtil::Debug()<<"CoInitializeEx failed: "<< hr;
   } else {    
     INetFwPolicy2 *pNetFwPolicy2 = NULL;
 
@@ -132,7 +132,7 @@ void FirewallControl::commonSetup(std::function<void(std::shared_ptr<INetFwRules
     hr = CoCreateInstance(__uuidof(NetFwPolicy2), NULL, CLSCTX_INPROC_SERVER, __uuidof(INetFwPolicy2), (void**)&pNetFwPolicy2);
     if (FAILED(hr))
     {
-      common::LogUtil::Debug()<<"CoCreateInstance failed:"<< hr;
+      bcl::LogUtil::Debug()<<"CoCreateInstance failed:"<< hr;
     }
     else {
       auto spNetFwPolicy=std::unique_ptr<INetFwPolicy2,std::function<void(INetFwPolicy2*)>>(pNetFwPolicy2,[](INetFwPolicy2* p) {
@@ -144,7 +144,7 @@ void FirewallControl::commonSetup(std::function<void(std::shared_ptr<INetFwRules
       hr = pNetFwPolicy2->get_Rules(&pFwRules);
       if (FAILED(hr))
       {
-        common::LogUtil::Debug()<<"get_Rules failed:"<< hr;
+        bcl::LogUtil::Debug()<<"get_Rules failed:"<< hr;
       } else {
         auto spFwRules=std::shared_ptr<INetFwRules>(pFwRules,[](INetFwRules* p) {
           p->Release();

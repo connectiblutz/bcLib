@@ -8,7 +8,7 @@
 #include <memory>
 #include <condition_variable>
 
-namespace common {
+namespace bcl {
 
 class ThreadPool {
   public:

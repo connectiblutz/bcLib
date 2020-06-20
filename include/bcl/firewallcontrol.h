@@ -8,7 +8,7 @@
 #include <netfw.h>
 #endif
 
-namespace common {
+namespace bcl {
   class FirewallControl {
     public:
       enum Direction {

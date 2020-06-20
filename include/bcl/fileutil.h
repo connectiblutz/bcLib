@@ -3,7 +3,7 @@
 #include <string>
 #include <filesystem>
 
-namespace common {
+namespace bcl {
 
 class FileUtil {
   public:
