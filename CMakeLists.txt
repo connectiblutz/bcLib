@@ -10,8 +10,8 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Werror -Wall -Wextra")
 
-add_library(bcLib)
-target_sources(bcLib
+add_library(bcl)
+target_sources(bcl
   PRIVATE
     src/messagethread.cc
     src/messagethreadpool.cc
@@ -47,32 +47,32 @@ target_sources(bcLib
     include/bcl/servicecontrol.h
 )
 
-target_include_directories(bcLib PUBLIC
+target_include_directories(bcl PUBLIC
   include/
 )
 
 if (WIN32)
-target_sources(bcLib
+target_sources(bcl
   PRIVATE
     src/windowsservice.cc
   PUBLIC
     include/bcl/windowsservice.h
 )
-target_link_libraries(bcLib PUBLIC
+target_link_libraries(bcl PUBLIC
   Ws2_32 # socketutil
   ole32 # firewallcontrol
   oleaut32 # firewallcontrol
 )
-set_target_properties(bcLib PROPERTIES COMPILE_DEFINITIONS
+set_target_properties(bcl PROPERTIES COMPILE_DEFINITIONS
   _SILENCE_CXX17_CODECVT_HEADER_DEPRECATION_WARNING
 )
-target_compile_definitions(bcLib PRIVATE
+target_compile_definitions(bcl PRIVATE
   UNICODE
 )
 endif()
 
 if(UNIX AND NOT APPLE)
-target_link_libraries(bcLib PUBLIC
+target_link_libraries(bcl PUBLIC
   pthread # threading
   stdc++fs # filesystem
 )
