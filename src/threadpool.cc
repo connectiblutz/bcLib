@@ -38,7 +38,7 @@ void ThreadPool::stopWhenEmpty() {
 
 void ThreadPool::join() {
   static std::mutex joinMutex;
-  std::lock_guard lock(joinMutex);
+  std::lock_guard<std::mutex> lock(joinMutex);
   for (auto&& pt : poolThreads) {
     if (pt.joinable()) pt.join();
   }

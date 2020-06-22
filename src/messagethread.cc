@@ -45,7 +45,7 @@ void MessageThread::stopWhenEmpty() {
 }
 void MessageThread::join() {
   static std::mutex joinMutex;
-  std::lock_guard lock(joinMutex);
+  std::lock_guard<std::mutex> lock(joinMutex);
   if (t.joinable()) t.join();
 }
 
