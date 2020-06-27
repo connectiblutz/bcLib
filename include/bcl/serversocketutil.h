@@ -28,7 +28,7 @@ class UdpServerSocket : public ServerSocket {
   public:
     UdpServerSocket(std::string ip, uint16_t port);
     ~UdpServerSocket();
-    void ReadPacket(std::function<void(std::string,std::shared_ptr<char>)> cb, uint16_t maxPacketSize = 4096);
+    void ReadPacket(std::function<void(std::string,std::shared_ptr<char>,uint16_t)> cb, uint16_t maxPacketSize = 4096);
 };
 
 class ServerSocketUtil {

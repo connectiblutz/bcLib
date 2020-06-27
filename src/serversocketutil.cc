@@ -35,7 +35,9 @@ ServerSocket::ServerSocket(int af, int type, std::string ip, uint16_t port) : so
   serv_addr.sin_family = af; 
   serv_addr.sin_port = htons(port);
   inet_pton(AF_INET, ip.c_str(), &serv_addr.sin_addr);
-  if (0==bind(sock,(struct sockaddr *)&serv_addr, sizeof(serv_addr))) {
+  if (0!=bind(sock,(struct sockaddr *)&serv_addr, sizeof(serv_addr))) {
+    LogUtil::Debug()<<"failed to find to "<<ip<<":"<<port << ", error "<<errno;
+  } else {
     listening=true;
   }
   
@@ -52,7 +54,7 @@ UdpServerSocket::~UdpServerSocket() {
 
 }
 
-void UdpServerSocket::ReadPacket(std::function<void(std::string,std::shared_ptr<char>)> cb, uint16_t maxPacketSize) {
+void UdpServerSocket::ReadPacket(std::function<void(std::string,std::shared_ptr<char>,uint16_t)> cb, uint16_t maxPacketSize) {
   auto data = std::shared_ptr<char>(new char[maxPacketSize], std::default_delete<char[]>());
 
   struct sockaddr_in src_addr; 
@@ -63,8 +65,8 @@ void UdpServerSocket::ReadPacket(std::function<void(std::string,std::shared_ptr<
     return;
   }
   char str[46];
-  inet_ntop(src_addr.sin_family, &(src_addr.sin_addr), str, sizeof str);
-  cb(str, data);
+  inet_ntop(AF_INET, &(src_addr.sin_addr), str, sizeof str);
+  cb(str, data, read);
 }
 
 std::shared_ptr<ServerSocket> ServerSocketUtil::Create(std::string protocol, std::string ip, uint16_t port) {
