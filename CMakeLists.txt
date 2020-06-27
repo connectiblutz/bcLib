@@ -15,6 +15,7 @@ target_sources(bcl
     src/logutil.cc
     src/executil.cc
     src/socketutil.cc
+    src/serversocketutil.cc
     src/stringutil.cc
     src/singleton.cc
     src/pathutil.cc
@@ -33,6 +34,7 @@ target_sources(bcl
     include/bcl/priorityqueueex.h
     include/bcl/executil.h
     include/bcl/socketutil.h
+    include/bcl/serversocketutil.h
     include/bcl/stringutil.h
     include/bcl/singleton.h
     include/bcl/pathutil.h
