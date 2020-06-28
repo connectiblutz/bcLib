@@ -1,5 +1,6 @@
 #include "bcl/socketaddress.h"
 #include <sstream>
+#include <cstring>
 
 namespace bcl {
 
@@ -12,13 +13,11 @@ SocketAddress::SocketAddress(const IPAddress& address, uint16_t port) : _port(po
     sockaddr_in* addr = (sockaddr_in*)&_sockaddr;
     addr->sin_family=address.family();
     addr->sin_port=htons(_port);
-    addr->sin_len=sizeof(sockaddr_in);
     memcpy(&addr->sin_addr,address.getAddr4(),sizeof(in_addr));
   } else if (address.isV6()) {
     sockaddr_in6* addr = (sockaddr_in6*)&_sockaddr;
     addr->sin6_family=address.family();
     addr->sin6_port=htons(_port);
-    addr->sin6_len=sizeof(sockaddr_in6);
     memcpy(&addr->sin6_addr,address.getAddr6(),sizeof(in6_addr));
   }
 }

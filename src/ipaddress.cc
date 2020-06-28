@@ -1,4 +1,5 @@
 #include "bcl/ipaddress.h"
+#include <cstring>
 
 namespace bcl {
 

@@ -18,7 +18,6 @@ TEST(socketAddress, fromIpV4)
   EXPECT_EQ(AF_INET, sock.getSockaddr4()->sin_family);	
   EXPECT_EQ(0x44332211, sock.getSockaddr4()->sin_addr.s_addr);	
   EXPECT_EQ(htons(port), sock.getSockaddr4()->sin_port);
-  EXPECT_EQ(sizeof(sockaddr_in), sock.getSockaddr4()->sin_len);
   EXPECT_EQ(AF_INET, sock.getSockaddr()->sa_family);
   EXPECT_EQ(sizeof(sockaddr_in),sock.getSockaddrSize());
 }
@@ -35,7 +34,6 @@ TEST(socketAddress, fromStringV4)
   EXPECT_EQ(AF_INET, sock.getSockaddr4()->sin_family);	
   EXPECT_EQ(0x44332211, sock.getSockaddr4()->sin_addr.s_addr);	
   EXPECT_EQ(htons(port), sock.getSockaddr4()->sin_port);
-  EXPECT_EQ(sizeof(sockaddr_in), sock.getSockaddr4()->sin_len);
   EXPECT_EQ(AF_INET, sock.getSockaddr()->sa_family);
   EXPECT_EQ(sizeof(sockaddr_in),sock.getSockaddrSize());
 }
@@ -53,7 +51,6 @@ TEST(socketAddress, fromSockaddrV4)
   EXPECT_EQ(tmp.getSockaddr4()->sin_family, sock.getSockaddr4()->sin_family);	
   EXPECT_EQ(tmp.getSockaddr4()->sin_addr.s_addr, sock.getSockaddr4()->sin_addr.s_addr);	
   EXPECT_EQ(tmp.getSockaddr4()->sin_port, sock.getSockaddr4()->sin_port);
-  EXPECT_EQ(tmp.getSockaddr4()->sin_len, sock.getSockaddr4()->sin_len);
   EXPECT_EQ(tmp.getSockaddr()->sa_family, sock.getSockaddr()->sa_family);
   EXPECT_EQ(tmp.getSockaddrSize(),sock.getSockaddrSize());
 }

@@ -7,6 +7,7 @@ ThreadPool::ThreadPool(uint16_t threads) : running(true), _stopWhenEmpty(false) 
   if (threads==0) {
     threads = std::thread::hardware_concurrency();
   }
+  if (threads<2) threads=2;
   LogUtil::Debug()<<"using thread pool size "<<threads;
   for (auto i = 0; i < threads; i++) {
     poolThreads.push_back(std::thread(&ThreadPool::poolLoop,this));
