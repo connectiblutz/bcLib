@@ -26,3 +26,14 @@ add_executable(threadpool_lambda_perf
 target_link_libraries(threadpool_lambda_perf
   bcl
 )
+
+add_executable(bcl_tests
+  src/socketaddress_test.cc
+  src/ipaddress_test.cc
+)
+target_link_libraries(bcl_tests
+  PRIVATE
+    bcl
+    GTest::gtest 
+    GTest::gtest_main
+)

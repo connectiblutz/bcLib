@@ -22,6 +22,8 @@ target_sources(bcl
     src/firewallcontrol.cc
     src/filewatcher.cc
     src/servicecontrol.cc
+    src/ipaddress.cc
+    src/socketaddress.cc
   PUBLIC
     include/bcl/channel.h
     include/bcl/messagethread.h
@@ -41,6 +43,8 @@ target_sources(bcl
     include/bcl/firewallcontrol.h
     include/bcl/filewatcher.h
     include/bcl/servicecontrol.h
+    include/bcl/ipaddress.h
+    include/bcl/socketaddress.h
 )
 
 target_include_directories(bcl PUBLIC

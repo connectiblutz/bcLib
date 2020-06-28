@@ -3,12 +3,13 @@
 #include <string>
 #include <memory>
 #include <functional>
+#include <bcl/socketaddress.h>
 
 namespace bcl {
 
 class ServerSocket {
   public:
-    ServerSocket(int af, int type, std::string ip, uint16_t port);
+    ServerSocket(int type, const SocketAddress& addr);
     virtual ~ServerSocket();
     bool isListening() const { return listening; }
   protected:
@@ -26,14 +27,15 @@ class ServerSocket {
 
 class UdpServerSocket : public ServerSocket {
   public:
-    UdpServerSocket(std::string ip, uint16_t port);
+    UdpServerSocket(const SocketAddress& addr);
     ~UdpServerSocket();
-    void ReadPacket(std::function<void(std::string,std::shared_ptr<char>,uint16_t)> cb, uint16_t maxPacketSize = 4096);
+    void ReadPacket(std::function<void(const SocketAddress&,std::shared_ptr<char>,uint16_t)> cb, uint16_t maxPacketSize = 4096);
+    void WritePacket(const SocketAddress& dest, char* data, uint16_t size);
 };
 
 class ServerSocketUtil {
   public:
-    static std::shared_ptr<ServerSocket> Create(std::string protcol, std::string ip, uint16_t port);
+    static std::shared_ptr<ServerSocket> Create(const std::string& protcol, const SocketAddress& addr);
 };
 
 }
