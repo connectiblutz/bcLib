@@ -2,12 +2,13 @@
 
 #include <string>
 #include <memory>
+#include <bcl/socketaddress.h>
 
 namespace bcl {
 
 class Socket {
   public:
-    Socket(int af, int type, std::string ip, uint16_t port);
+    Socket(int type, const SocketAddress& addr);
     virtual ~Socket();
     bool isConnected() const { return connected; }
   protected:
@@ -25,13 +26,13 @@ class Socket {
 
 class TcpSocket : public Socket {
   public:
-    TcpSocket(std::string ip, uint16_t port);
+    TcpSocket(const SocketAddress& addr);
     ~TcpSocket();
 };
 
 class SocketUtil {
   public:
-    static std::shared_ptr<Socket> Create(std::string protcol, std::string ip, uint16_t port);
+    static std::shared_ptr<Socket> Create(std::string protcol, const SocketAddress& addr);
 };
 
 }

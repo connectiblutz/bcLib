@@ -24,18 +24,14 @@ Socket::WSAInit::~WSAInit() {
 #define closesocket close
 #endif
 
-Socket::Socket(int af, int type, std::string ip, uint16_t port) : sock(0),connected(false) {
+Socket::Socket(int type, const SocketAddress& addr) : sock(0),connected(false) {
 #ifdef _WIN32
   static WSAInit wsaInit;
 #endif
 
-  LogUtil::Debug()<<"creating socket to "<<ip<<":"<<port;
-  sock = socket(af, type, 0);
-  struct sockaddr_in serv_addr;
-  serv_addr.sin_family = af; 
-  serv_addr.sin_port = htons(port);
-  inet_pton(AF_INET, ip.c_str(), &serv_addr.sin_addr);
-  if (0==connect(sock, (struct sockaddr *)&serv_addr, sizeof(serv_addr))) 
+  LogUtil::Debug()<<"creating socket to "<<addr.toString();
+  sock = socket(addr.family(), type, 0);
+  if (0==connect(sock, addr.getSockaddr(), addr.getSockaddrSize())) 
   { 
     connected=true;
   }
@@ -46,15 +42,15 @@ Socket::~Socket() {
   if (sock) closesocket(sock);
 }
 
-TcpSocket::TcpSocket(std::string ip, uint16_t port) : Socket(AF_INET,SOCK_STREAM, ip, port) {  
+TcpSocket::TcpSocket(const SocketAddress& addr) : Socket(SOCK_STREAM, addr) {  
 }
 
 TcpSocket::~TcpSocket() {
 
 }
 
-std::shared_ptr<Socket> SocketUtil::Create(std::string protocol, std::string ip, uint16_t port) {
-  if (protocol=="tcp") return std::dynamic_pointer_cast<Socket>(std::make_shared<TcpSocket>(ip,port));
+std::shared_ptr<Socket> SocketUtil::Create(std::string protocol, const SocketAddress& addr) {
+  if (protocol=="tcp") return std::dynamic_pointer_cast<Socket>(std::make_shared<TcpSocket>(addr));
   return std::shared_ptr<Socket>();
 }
 
