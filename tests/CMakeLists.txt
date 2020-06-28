@@ -2,10 +2,6 @@ cmake_minimum_required(VERSION 3.13)
 
 enable_testing()
 
-find_package(GTest CONFIG REQUIRED)
-# target_link_libraries(<name> PRIVATE GTest::gtest GTest::gtest_main GTest::gmock GTest::gmock_main)
-# add_test(AllTestsInMain <name>)
-
 add_executable(messagethreadpool_perf
   src/messagethreadpool_perf.cc
 )
@@ -34,6 +30,6 @@ add_executable(bcl_tests
 target_link_libraries(bcl_tests
   PRIVATE
     bcl
-    GTest::gtest 
-    GTest::gtest_main
 )
+
+add_dependency(TARGET bcl_tests LIB GTest::GTest GTest::Main VCPKG_PKG GTEST VCPKG_LIB GTest::gtest GTest::gtest_main)

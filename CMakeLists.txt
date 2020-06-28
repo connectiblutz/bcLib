@@ -3,6 +3,8 @@ project(bcLib VERSION 0.5.0 LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 17)
 
+include("${CMAKE_CURRENT_LIST_DIR}/cmake/dependencies.cmake")
+
 add_library(bcl)
 target_sources(bcl
   PRIVATE
