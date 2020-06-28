@@ -34,6 +34,7 @@ class MessageThread {
     virtual void join();
   protected:
     virtual void OnMessage(Message message) = 0;
+    virtual void OnStop() { };
   private:
     class StoredMessage {
       public:

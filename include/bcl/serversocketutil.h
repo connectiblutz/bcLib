@@ -12,6 +12,7 @@ class ServerSocket {
     ServerSocket(int type, const SocketAddress& addr);
     virtual ~ServerSocket();
     bool isListening() const { return listening; }
+    void close();
   protected:
     int sock;
     bool listening;

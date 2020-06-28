@@ -71,7 +71,10 @@ void MessageThread::messageLoop() {
       }
       messageQueue.pop();
       until=std::chrono::steady_clock::time_point::max();
-      if (handleMessage(lk,storedMessage)) return;
+      if (handleMessage(lk,storedMessage)) {
+        OnStop();
+        return;
+      }
     }
     if (_stopWhenEmpty && messageQueue.empty()) {
       break;

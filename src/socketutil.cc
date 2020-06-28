@@ -6,6 +6,8 @@
 #include "ws2tcpip.h"
 #else
 #include <arpa/inet.h>
+#include <unistd.h>
+#define closesocket close
 #endif
 
 namespace bcl {
@@ -19,9 +21,6 @@ Socket::WSAInit::WSAInit() {
 Socket::WSAInit::~WSAInit() {
   WSACleanup();
 }
-#else
-#include <unistd.h>
-#define closesocket close
 #endif
 
 Socket::Socket(int type, const SocketAddress& addr) : sock(0),connected(false) {

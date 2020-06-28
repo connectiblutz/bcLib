@@ -6,6 +6,8 @@
 #include "ws2tcpip.h"
 #else
 #include <arpa/inet.h>
+#include <unistd.h>
+#define closesocket ::close
 #endif
 
 namespace bcl {
@@ -19,9 +21,6 @@ ServerSocket::WSAInit::WSAInit() {
 ServerSocket::WSAInit::~WSAInit() {
   WSACleanup();
 }
-#else
-#include <unistd.h>
-#define closesocket close
 #endif
 
 ServerSocket::ServerSocket(int type, const SocketAddress& addr) : sock(0), listening(false) {
@@ -39,8 +38,15 @@ ServerSocket::ServerSocket(int type, const SocketAddress& addr) : sock(0), liste
   
 }
 
+void ServerSocket::close() {
+  if (sock) {
+    closesocket(sock);
+    sock=0;
+  }
+}
+
 ServerSocket::~ServerSocket() {
-  if (sock) closesocket(sock);
+  close();
 }
 
 UdpServerSocket::UdpServerSocket(const SocketAddress& addr) : ServerSocket(SOCK_DGRAM, addr) {  
