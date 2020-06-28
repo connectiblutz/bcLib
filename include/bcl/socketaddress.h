@@ -11,6 +11,7 @@ namespace bcl {
 
 class SocketAddress {
   public:
+    SocketAddress(const std::string& addressAndPort);
     SocketAddress(const std::string& address, uint16_t port);
     SocketAddress(const IPAddress& address, uint16_t port);
     SocketAddress(const sockaddr* address);
@@ -30,6 +31,8 @@ class SocketAddress {
     bool isV6() const { return _sockaddr.sa_family==AF_INET6; }
     in_addr* getAddr4() const { return &getSockaddr4()->sin_addr; }
     in6_addr* getAddr6() const { return &getSockaddr6()->sin6_addr; }
+  private:
+    void initFromIPAddress(const IPAddress& address);
 };
 
 }

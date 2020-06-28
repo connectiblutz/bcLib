@@ -5,9 +5,18 @@
 namespace bcl {
 
 
+SocketAddress::SocketAddress(const std::string& addressAndPort)  {
+  size_t colon = addressAndPort.find(':');
+  _port = std::stoi(addressAndPort.substr(colon+1));
+  std::string address = addressAndPort.substr(0,colon);
+  initFromIPAddress(IPAddress(address));
+}
 SocketAddress::SocketAddress(const std::string& address, uint16_t port) : SocketAddress(IPAddress(address),port) {
 }
 SocketAddress::SocketAddress(const IPAddress& address, uint16_t port) : _port(port) {
+  initFromIPAddress(address);
+}
+void SocketAddress::initFromIPAddress(const IPAddress& address) {
   memset(&_sockaddr,0,sizeof(_sockaddr)); 
   if (address.isV4()) {
     sockaddr_in* addr = (sockaddr_in*)&_sockaddr;

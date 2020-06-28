@@ -38,6 +38,22 @@ TEST(socketAddress, fromStringV4)
   EXPECT_EQ(sizeof(sockaddr_in),sock.getSockaddrSize());
 }
 
+TEST(socketAddress, fromString2V4)
+{
+  auto sock = bcl::SocketAddress(addr4+":"+std::to_string(port));
+  EXPECT_EQ(AF_INET, sock.family());	
+  EXPECT_EQ(true, sock.isV4());	
+  EXPECT_EQ(false, sock.isV6());
+  EXPECT_EQ(0x44332211, sock.getAddr4()->s_addr);	
+  EXPECT_EQ(addr4+":"+std::to_string(port), sock.toString());
+  EXPECT_EQ(port,sock.port());	
+  EXPECT_EQ(AF_INET, sock.getSockaddr4()->sin_family);	
+  EXPECT_EQ(0x44332211, sock.getSockaddr4()->sin_addr.s_addr);	
+  EXPECT_EQ(htons(port), sock.getSockaddr4()->sin_port);
+  EXPECT_EQ(AF_INET, sock.getSockaddr()->sa_family);
+  EXPECT_EQ(sizeof(sockaddr_in),sock.getSockaddrSize());
+}
+
 TEST(socketAddress, fromSockaddrV4)
 {
   auto tmp = bcl::SocketAddress(addr4,port);
