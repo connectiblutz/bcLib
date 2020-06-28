@@ -56,18 +56,16 @@ UdpServerSocket::~UdpServerSocket() {
 
 }
 
-void UdpServerSocket::ReadPacket(std::function<void(const SocketAddress&,std::shared_ptr<char>,uint16_t)> cb, uint16_t maxPacketSize) {
-  auto data = std::shared_ptr<char>(new char[maxPacketSize], std::default_delete<char[]>());
-
+uint16_t UdpServerSocket::ReadPacket(SocketAddress& address, char* buffer, uint16_t maxPacketSize) {
   struct sockaddr src_addr; 
   socklen_t src_len = sizeof src_addr;
-  ssize_t read = recvfrom(sock, data.get(), maxPacketSize, 0, &src_addr, &src_len);
+  ssize_t read = recvfrom(sock, buffer, maxPacketSize, 0, &src_addr, &src_len);
   if (read == -1) {
     listening=false;
-    return;
+    return 0;
   }
-  auto addr = SocketAddress(&src_addr);
-  cb(addr, data, read);
+  address = SocketAddress(&src_addr);
+  return read;
 }
 void UdpServerSocket::WritePacket(const SocketAddress& dest, char* data, uint16_t size) {
   ssize_t written = sendto(sock,data,size,0,dest.getSockaddr(),dest.getSockaddrSize());

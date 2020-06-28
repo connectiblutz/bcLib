@@ -30,7 +30,7 @@ class UdpServerSocket : public ServerSocket {
   public:
     UdpServerSocket(const SocketAddress& addr);
     ~UdpServerSocket();
-    void ReadPacket(std::function<void(const SocketAddress&,std::shared_ptr<char>,uint16_t)> cb, uint16_t maxPacketSize = 4096);
+    uint16_t ReadPacket(SocketAddress& address, char* buffer, uint16_t maxPacketSize = 4096);
     void WritePacket(const SocketAddress& dest, char* data, uint16_t size);
 };
 
