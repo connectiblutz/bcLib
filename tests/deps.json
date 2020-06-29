@@ -1,5 +1,7 @@
 {
   "gtest":{
-    "version":null
+    "version":null,
+    "vcpkg":"gtest",
+    "apt":"libgtest-dev"
   }
 }

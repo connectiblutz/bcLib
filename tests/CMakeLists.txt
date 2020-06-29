@@ -32,4 +32,4 @@ target_link_libraries(bcl_tests
     bcl
 )
 
-add_dependency(TARGET bcl_tests LIB GTest::GTest GTest::Main VCPKG_PKG GTEST VCPKG_LIB GTest::gtest GTest::gtest_main)
+add_dependency(TARGET bcl_tests LIB gtest gtest_main VCPKG_PKG GTEST VCPKG_LIB GTest::gtest GTest::gtest_main)
