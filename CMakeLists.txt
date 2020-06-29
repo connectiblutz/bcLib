@@ -77,6 +77,7 @@ if(UNIX AND NOT APPLE)
 target_link_libraries(bcl PUBLIC
   pthread # threading
   stdc++fs # filesystem
+  atomic # for armel (pi b+) support
 )
 endif()
 
