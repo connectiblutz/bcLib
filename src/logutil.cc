@@ -5,7 +5,7 @@
 
 namespace bcl {
 
-LogUtil::LogUtil(std::filesystem::path file) : selfManaged(true) {  
+LogUtil::LogUtil(const std::filesystem::path& file) : selfManaged(true) {  
   _output = new std::ofstream(file.string());
 }
 

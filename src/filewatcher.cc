@@ -17,7 +17,7 @@
 
 namespace bcl {
 
-FileWatcher::FileWatcher(std::filesystem::path watchedFile, std::function<void()> onChange) : _enabled(true), _watchedFile(watchedFile), _onChange(onChange) {
+FileWatcher::FileWatcher(const std::filesystem::path& watchedFile, std::function<void()> onChange) : _enabled(true), _watchedFile(watchedFile), _onChange(onChange) {
   _t=std::thread(&FileWatcher::run,this);
 }
 

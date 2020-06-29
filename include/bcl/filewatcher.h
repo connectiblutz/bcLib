@@ -8,7 +8,7 @@ namespace bcl {
 
 class FileWatcher {
   public:
-    FileWatcher(std::filesystem::path watchedFile, std::function<void()> onChange);
+    FileWatcher(const std::filesystem::path& watchedFile, std::function<void()> onChange);
     ~FileWatcher();
   private:
     void run();

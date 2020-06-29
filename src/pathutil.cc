@@ -8,7 +8,7 @@
 
 namespace bcl {
 
-std::filesystem::path PathUtil::binaryExe() {
+const std::filesystem::path PathUtil::binaryExe() {
 #ifdef _WIN32
   wchar_t szPath[MAX_PATH];
   if( GetModuleFileName( nullptr, szPath, MAX_PATH ) ) {
@@ -18,11 +18,11 @@ std::filesystem::path PathUtil::binaryExe() {
 #endif
   return std::filesystem::path();
 }
-std::filesystem::path PathUtil::binaryPath() {
+const std::filesystem::path PathUtil::binaryPath() {
   return PathUtil::binaryExe().parent_path();
 }
 
-void PathUtil::chdir(std::filesystem::path path) {
+void PathUtil::chdir(const std::filesystem::path& path) {
 #ifdef _WIN32
   _wchdir(path.wstring().c_str());
 #else

@@ -28,7 +28,7 @@ class LogUtil {
     ~LogUtil() { };
     std::ostream* output() { return _output; }
   protected:
-    LogUtil(std::filesystem::path file);
+    LogUtil(const std::filesystem::path& file);
     LogUtil(std::ostream& ostream) : selfManaged(false), _output(&ostream) {};
     friend Singleton::Strong; 
     friend LogLine;

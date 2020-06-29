@@ -7,9 +7,9 @@ namespace bcl {
 
 class PathUtil {
   public:
-    static std::filesystem::path binaryExe();
-    static std::filesystem::path binaryPath();
-    static void chdir(std::filesystem::path path);
+    static const std::filesystem::path binaryExe();
+    static const std::filesystem::path binaryPath();
+    static void chdir(const std::filesystem::path& path);
 };
 
 }
