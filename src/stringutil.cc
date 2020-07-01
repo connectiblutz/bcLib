@@ -69,4 +69,13 @@ std::shared_ptr<wchar_t> StringUtil::toBSTR(const std::string& s) {
 }
 #endif
 
+bool StringUtil::startsWith(const std::string& s, const std::string& needle) {
+  if (s.length()<needle.length()) return false;
+  return (s.compare(0,needle.length(),needle)==0);
+}
+bool StringUtil::endsWith(const std::string& s, const std::string& needle) {
+  if (s.length()<needle.length()) return false;
+  return (s.compare(s.length()-needle.length(),needle.length(),needle)==0);
+}
+
 }

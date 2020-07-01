@@ -19,5 +19,7 @@ class StringUtil {
 #ifdef _WIN32
     static std::shared_ptr<wchar_t> toBSTR(const std::string& s);
 #endif
+    static bool startsWith(const std::string& s, const std::string& needle);
+    static bool endsWith(const std::string& s, const std::string& needle);
 };
 }
