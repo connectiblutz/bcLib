@@ -4,6 +4,8 @@
 #include <direct.h>
 #else
 #include <unistd.h>
+#include <libgen.h>
+#include <linux/limits.h>
 #endif
 
 namespace bcl {
@@ -14,6 +16,12 @@ const std::filesystem::path PathUtil::binaryExe() {
   if( GetModuleFileName( nullptr, szPath, MAX_PATH ) ) {
     std::filesystem::path module(szPath);
     return module;
+  }
+#else
+  char exepath[PATH_MAX + 1] = {0};
+  ssize_t count = readlink("/proc/self/exe", exepath, PATH_MAX);
+  if (count != -1) {
+    return std::filesystem::path(exepath);
   }
 #endif
   return std::filesystem::path();
