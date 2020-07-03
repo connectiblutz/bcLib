@@ -5,7 +5,11 @@
 #else
 #include <unistd.h>
 #include <libgen.h>
+#ifdef  __APPLE__
+#include <sys/syslimits.h>
+#else
 #include <linux/limits.h>
+#endif
 #endif
 
 namespace bcl {
